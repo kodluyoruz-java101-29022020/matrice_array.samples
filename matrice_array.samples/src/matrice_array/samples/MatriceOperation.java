@@ -1,7 +1,13 @@
 package matrice_array.samples;
 
-public class MatriceOperation 
-{
+public class MatriceOperation {
+	
+	private int randomScaleValue = 10;
+	
+	public void setRandomScaleValue(int randomScaleValue) {
+		this.randomScaleValue = randomScaleValue;
+	}
+	
 	public void printMatrice(int[][] matrice) {
 		
 		for(int i=0; i < matrice.length; i++) {
@@ -31,6 +37,26 @@ public class MatriceOperation
 		
 		return resultMatrice;
 	}
+	
+	public int[][] multiplyMatrices(int[][] firstMatrice, int[][] secondMatrice) {
+		
+		int[][] resultMatrice = new int[firstMatrice.length][secondMatrice[0].length];
+		
+		for(int i=0; i < resultMatrice.length; i++) {
+			
+			for(int j=0; j < resultMatrice[0].length; j++) {
+				
+				int result = 0;
+				for(int k=0; k < secondMatrice.length; k++) {
+					result += firstMatrice[i][k] * secondMatrice[k][j];
+				}
+				resultMatrice[i][j] = result;
+			}
+		
+		}
+		
+		return resultMatrice;
+	}
 
 	public int[][] fillMatrice(int rowCount, int columnCount) {
 		
@@ -40,7 +66,7 @@ public class MatriceOperation
 			
 			for(int j=0; j < matrice[0].length; j++) {
 				
-				int matriceValue = (int)(Math.random() * 100);
+				int matriceValue = (int)(Math.random() * this.randomScaleValue);
 				matrice[i][j] = matriceValue;
 			}	
 		}
@@ -59,15 +85,5 @@ public class MatriceOperation
 		
 		return String.format("Matrice %d Row Count: %d, Column Count: %d", id, rowCount, columnCount); 
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }
